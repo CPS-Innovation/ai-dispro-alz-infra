@@ -44,5 +44,5 @@ jobs:
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.apply_changes == 'true' }}
-        working-directory: ./terraform/code
+        working-directory: ./terraform/azure-landing-zone/code
         run: terraform apply -auto-approve tfplan
