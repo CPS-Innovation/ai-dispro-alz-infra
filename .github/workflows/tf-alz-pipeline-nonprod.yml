@@ -1,4 +1,4 @@
-name: Terraform Azure Landing Zone
+name: Azure Landing Zone TF NonProd
 
 # Manual trigger with input
 on:
