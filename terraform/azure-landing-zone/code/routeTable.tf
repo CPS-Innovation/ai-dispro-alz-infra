@@ -1,5 +1,5 @@
 resource "azurerm_route_table" "rt" {
-  name                = "rt-cmd-${var.subscription}-01"
+  name                = "rt-aid-${var.subscription}-01"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }

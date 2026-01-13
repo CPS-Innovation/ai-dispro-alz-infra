@@ -33,10 +33,10 @@ jobs:
         working-directory: ./terraform/azure-landing-zone/code
         run: |
           terraform init \
-            -backend-config="resource_group_name=rg-dispro-dev" \
-            -backend-config="storage_account_name=stdisprodev002" \
+            -backend-config="resource_group_name=rg-aid-tfstate-nonprod-01" \
+            -backend-config="storage_account_name=staidtfstatenonprod01" \
             -backend-config="container_name=tfstate" \
-            -backend-config="key=nonprod/landing-zone.tfstate"
+            -backend-config="key=azure-landing-zone-nonprod.tfstate"
 
       - name: Terraform Plan
         working-directory: ./terraform/azure-landing-zone/code

@@ -1,5 +1,5 @@
 resource "azurerm_key_vault" "kv" {
-  name                          = "kv-aidispro-${var.subscription}-01"
+  name                          = "kv-aid-${var.subscription}-01"
   location                      = azurerm_resource_group.rg.location
   resource_group_name           = azurerm_resource_group.rg.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id
@@ -12,13 +12,13 @@ resource "azurerm_key_vault" "kv" {
 }
 
 resource "azurerm_private_endpoint" "kv_pe" {
-  name                = "pe-kv-cmd-${var.subscription}-01"
+  name                = "pe-kv-aid-${var.subscription}-01"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   subnet_id           = local.subnet_ids["snet-nonprod-01"]
 
   private_service_connection {
-    name                           = "psc-kv-cmd-${var.subscription}-01"
+    name                           = "psc-kv-aid-${var.subscription}-01"
     private_connection_resource_id = azurerm_key_vault.kv.id
     subresource_names              = ["vault"]
     is_manual_connection           = false
