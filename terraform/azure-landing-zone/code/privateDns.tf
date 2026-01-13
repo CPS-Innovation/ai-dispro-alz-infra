@@ -7,6 +7,7 @@
 resource "azurerm_private_dns_zone" "keyvault" {
   name                = "privatelink.vaultcore.azure.net"
   resource_group_name = azurerm_resource_group.rg.name
+  tags                = module.tags.keyvalues
 }
 
 # -----------------------------------------
@@ -18,6 +19,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "keyvault_vnet_link" {
   private_dns_zone_name = azurerm_private_dns_zone.keyvault.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
   registration_enabled  = false
+  tags                = module.tags.keyvalues
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -31,6 +33,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "keyvault_vnet_link" {
 resource "azurerm_private_dns_zone" "psql" {
   name                = "privatelink.postgres.database.azure.com"
   resource_group_name = azurerm_resource_group.rg.name
+  tags                = module.tags.keyvalues
 }
 
 # -----------------------------------------
@@ -42,6 +45,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "psql_link" {
   private_dns_zone_name = azurerm_private_dns_zone.psql.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
   registration_enabled  = false
+  tags                = module.tags.keyvalues
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -55,6 +59,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "psql_link" {
 resource "azurerm_private_dns_zone" "app" {
   name                = "privatelink.azurewebsites.net"
   resource_group_name = azurerm_resource_group.rg.name
+  tags                = module.tags.keyvalues
 }
 
 # -----------------------------------------
@@ -66,6 +71,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "app_vnet_link" {
   private_dns_zone_name = azurerm_private_dns_zone.app.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
   registration_enabled  = false
+  tags                = module.tags.keyvalues
 }
 
 # ----------------------------------------------------------------------------------------------------------------------

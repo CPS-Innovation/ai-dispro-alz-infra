@@ -4,6 +4,7 @@ resource "azurerm_storage_account" "fadependency-sa" {
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  tags                     = module.tags.keyvalues
 }
 
 resource "azurerm_service_plan" "shared-asp" {
@@ -12,4 +13,5 @@ resource "azurerm_service_plan" "shared-asp" {
   location            = azurerm_resource_group.rg.location
   os_type             = "Linux"
   sku_name            = "EP1"
+  tags                = module.tags.keyvalues
 }

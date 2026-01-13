@@ -9,6 +9,7 @@ resource "azurerm_key_vault" "kv" {
   enabled_for_disk_encryption   = true
   rbac_authorization_enabled    = true
   public_network_access_enabled = false
+  tags                          = module.tags.keyvalues
 }
 
 resource "azurerm_private_endpoint" "kv_pe" {
@@ -16,6 +17,7 @@ resource "azurerm_private_endpoint" "kv_pe" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   subnet_id           = local.subnet_ids["snet-nonprod-01"]
+  tags                = module.tags.keyvalues
 
   private_service_connection {
     name                           = "psc-kv-aid-${var.subscription}-01"
