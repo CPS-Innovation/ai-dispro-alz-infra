@@ -6,5 +6,6 @@ locals {
     RepoUri             = var.repo_uri
     PipelineLastRunDate = var.date
     Environment         = var.environment
+    GitHubRunNumber     = var.run_number
   }
 }

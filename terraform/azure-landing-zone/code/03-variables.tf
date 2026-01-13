@@ -32,6 +32,10 @@ variable "date" {
   type = string
 }
 
+variable "run_number" {
+  type = string
+}
+
 variable "subnets" {
   description = "List of subnet objects, each with name, address_prefixes, optional security_group, optional route_table_id, and optional delegation."
   type = list(object({

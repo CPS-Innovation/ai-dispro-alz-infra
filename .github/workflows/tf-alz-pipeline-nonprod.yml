@@ -47,6 +47,7 @@ jobs:
             -var "repo_name=${{ github.repository }}" \
             -var "branch_name=${{ github.ref_name }}" \
             -var "repo_uri=${{ github.server_url }}/${{ github.repository }}" \
+            -var "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             -var "run_number=${{ github.run_number }}" \
             -out=tfplan
 
