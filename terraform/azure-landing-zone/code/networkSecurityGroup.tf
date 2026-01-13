@@ -2,7 +2,6 @@ resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-aid-${var.subscription}-01"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  tags                = module.tags.keyvalues
 }
 
 resource "azurerm_monitor_diagnostic_setting" "nsg_diagnostic" {
