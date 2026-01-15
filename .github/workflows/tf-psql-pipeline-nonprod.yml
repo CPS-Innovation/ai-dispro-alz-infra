@@ -42,7 +42,7 @@ jobs:
         working-directory: ./terraform/azure-psql/code
         run: |
           terraform plan \
-            -var-file=../environments/nonprod.tfvars \
+            -var-file=../environments/dev.tfvars \
             -var "pipeline_name=${{ github.workflow }}" \
             -var "repo_name=${{ github.repository }}" \
             -var "branch_name=${{ github.ref_name }}" \
