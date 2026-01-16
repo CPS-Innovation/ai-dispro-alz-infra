@@ -32,7 +32,7 @@ output "log_analytics_workspace_id" {
 
 
 data "azurerm_app_service_plan" "shared_asp" {
-  name                = "asp-vca-shrd-${var.subscription}-01"
+  name                = "asp-aid-shrd-${var.subscription}-01"
   resource_group_name = "rg-aid-${var.subscription}-01"
 }
 
@@ -43,7 +43,7 @@ output "app_service_plan_id" {
 
 
 data "azurerm_storage_account" "fadependency_sa" {
-  name                = "stfadepvcashrd${var.subscription}01"
+  name                = "stfadepaidshrd${var.subscription}01"
   resource_group_name = "rg-aid-${var.subscription}-01"
 }
 
