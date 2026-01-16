@@ -9,6 +9,6 @@ resource "azurerm_storage_account" "aidds_sa" {
 
 resource "azurerm_storage_container" "corpus" {
   name                  = "corpus"
-  storage_account_name  = azurerm_storage_account.aidds_sa.name
+  storage_account_id    = azurerm_storage_account.aidds_sa.id
   container_access_type = "private"
 }
