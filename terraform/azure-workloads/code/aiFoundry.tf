@@ -1,5 +1,5 @@
 resource "azurerm_ai_services" "foundry" {
-  name                = "aif-aid-${var.environment}-01"
+  name                = "aif-aid-${var.environment}-02"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku_name            = "S0"
@@ -33,7 +33,7 @@ resource "azapi_resource_action" "ai_foundry_project_management" {
 # Create default project
 resource "azapi_resource" "ai_foundry_project" {
   type      = "Microsoft.CognitiveServices/accounts/projects@2025-06-01"
-  name      = "fproj-aid-${var.environment}-01"
+  name      = "fproj-aid-${var.environment}-02"
   parent_id = azurerm_ai_services.foundry.id
   location  = azurerm_resource_group.rg.location
 
