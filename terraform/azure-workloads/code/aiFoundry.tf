@@ -5,6 +5,44 @@ resource "azurerm_ai_services" "foundry" {
   sku_name            = "S0"
 }
 
+# Enable project management for AI Foundry
+resource "azapi_resource_action" "ai_foundry_project_management" {
+  type        = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
+  resource_id = azurerm_ai_services.foundry.id
+  method      = "PATCH"
+
+  body = {
+    properties = {
+      allowProjectManagement = true
+    }
+  }
+}
+
+# Create default project
+resource "azapi_resource" "ai_foundry_project" {
+  type      = "Microsoft.CognitiveServices/accounts/projects@2025-06-01"
+  name      = "fproj-aid-${var.environment}-01"
+  parent_id = azurerm_ai_services.foundry.id
+  location  = azurerm_resource_group.rg.location
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  body = {
+    properties = {
+      displayName = "AI Foundry Default Project"
+      description = "Default AI Foundry project for ${var.environment}"
+    }
+  }
+
+  depends_on = [
+    azapi_resource_action.ai_foundry_project_management
+  ]
+}
+
+/*
+
 resource "azurerm_ai_foundry" "foundry_hub" {
   name                = "fhub-aid-${var.environment}-01"
   resource_group_name = azurerm_resource_group.rg.name
@@ -16,8 +54,6 @@ resource "azurerm_ai_foundry" "foundry_hub" {
     type = "SystemAssigned"
   }
 }
-
-/*
 
 resource "azurerm_ai_foundry_project" "foundry_project" {
   name               = "fhubproj-aid-${var.environment}-01"
