@@ -8,7 +8,6 @@ resource "azurerm_ai_services" "foundry" {
 
   public_network_access = "Enabled"
   network_acls {
-    bypass         = ""
     default_action = "Allow"
     ip_rules       = []
   }
