@@ -12,6 +12,10 @@ terraform {
       # Greater than requests versions newer than the version 2.0 specified in this instance. 
       version = ">2.0"
     }
+    azapi = {
+      source  = "Azure/azapi"
+      version = ">= 1.12.0"
+    }
   }
 
 }
