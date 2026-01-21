@@ -1,11 +1,11 @@
 resource "azurerm_cognitive_account" "document_intelligence" {
-  name                = "di-aid-${var.environment}-01"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  kind                = "FormRecognizer"
-  sku_name            = "S0"
-
+  name                  = "di-aid-${var.environment}-01"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  kind                  = "FormRecognizer"
+  sku_name              = "S0"
   custom_subdomain_name = "di-aid-${var.environment}-01"
+  tags                  = module.tags.keyvalues
 
   public_network_access_enabled = false
 
