@@ -15,6 +15,8 @@ resource "azurerm_ai_services" "foundry" {
   identity {
     type = "SystemAssigned"
   }
+
+  tags = module.tags.keyvalues
 }
 
 resource "azapi_resource_action" "ai_foundry_project_management" {
@@ -27,6 +29,7 @@ resource "azapi_resource_action" "ai_foundry_project_management" {
       allowProjectManagement = true
     }
   }
+
 }
 
 resource "azapi_resource" "ai_foundry_project" {
@@ -49,4 +52,6 @@ resource "azapi_resource" "ai_foundry_project" {
   depends_on = [
     azapi_resource_action.ai_foundry_project_management
   ]
+
+  tags = module.tags.keyvalues
 }
