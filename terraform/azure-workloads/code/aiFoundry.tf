@@ -1,10 +1,10 @@
 resource "azurerm_ai_services" "foundry" {
-  name                = "aif-aid-${var.environment}-02"
+  name                = "aif-aid-${var.environment}-01"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku_name            = "S0"
 
-  custom_subdomain_name = "aif-aid-${var.environment}"
+  custom_subdomain_name = "aif-aid-${var.environment}-01"
 
   public_network_access = "Enabled"
   network_acls {
@@ -17,9 +17,6 @@ resource "azurerm_ai_services" "foundry" {
   }
 }
 
-/*
-
-# Enable project management for AI Foundry
 resource "azapi_resource_action" "ai_foundry_project_management" {
   type        = "Microsoft.CognitiveServices/accounts@2025-04-01-preview"
   resource_id = azurerm_ai_services.foundry.id
@@ -32,10 +29,9 @@ resource "azapi_resource_action" "ai_foundry_project_management" {
   }
 }
 
-# Create default project
 resource "azapi_resource" "ai_foundry_project" {
   type      = "Microsoft.CognitiveServices/accounts/projects@2025-06-01"
-  name      = "fproj-aid-${var.environment}-02"
+  name      = "fproj-aid-${var.environment}-01"
   parent_id = azurerm_ai_services.foundry.id
   location  = azurerm_resource_group.rg.location
 
@@ -54,25 +50,3 @@ resource "azapi_resource" "ai_foundry_project" {
     azapi_resource_action.ai_foundry_project_management
   ]
 }
-
-/*
-
-resource "azurerm_ai_foundry" "foundry_hub" {
-  name                = "fhub-aid-${var.environment}-01"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  storage_account_id  = azurerm_storage_account.aidds_sa.id
-  key_vault_id        = data.azurerm_key_vault.kv_aid.id
-
-  identity {
-    type = "SystemAssigned"
-  }
-}
-
-resource "azurerm_ai_foundry_project" "foundry_project" {
-  name               = "fhubproj-aid-${var.environment}-01"
-  location            = azurerm_resource_group.rg.location
-  ai_services_hub_id = azurerm_ai_foundry.foundry_hub.id
-}
-
-*/
