@@ -1,43 +1,3 @@
-provider "azapi" {}
-resource "azapi_resource" "res-0" {
-  body = {
-    kind = "AIServices"
-    properties = {
-      allowProjectManagement = true
-      apiProperties = {
-        qnaAzureSearchEndpointKey = null
-      }
-      associatedProjects  = ["proj-default"]
-      customSubDomainName = "saifound3"
-      defaultProject      = "proj-default"
-      networkAcls = {
-        defaultAction       = "Allow"
-        ipRules             = []
-        virtualNetworkRules = []
-      }
-      publicNetworkAccess = "Enabled"
-    }
-    sku = {
-      name = "S0"
-    }
-  }
-  ignore_casing             = false
-  ignore_missing_property   = true
-  ignore_null_property      = false
-  location                  = "uksouth"
-  name                      = "saifound3"
-  parent_id                 = "/subscriptions/422e7966-394c-4668-8e78-67e68c3c32a5/resourceGroups/test03"
-  schema_validation_enabled = true
-  type                      = "Microsoft.CognitiveServices/accounts@2025-06-01"
-  identity {
-    identity_ids = []
-    type         = "SystemAssigned"
-  }
-}
-
-
-/*
-
 resource "azurerm_ai_services" "foundry" {
   name                = "aif-aid-${var.environment}-02"
   resource_group_name = azurerm_resource_group.rg.name
@@ -56,6 +16,8 @@ resource "azurerm_ai_services" "foundry" {
     type = "SystemAssigned"
   }
 }
+
+/*
 
 # Enable project management for AI Foundry
 resource "azapi_resource_action" "ai_foundry_project_management" {
