@@ -123,3 +123,27 @@ resource "azurerm_private_dns_zone_virtual_network_link" "storage_table_vnet_lin
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------
+# Private DNS Zone for Storage Queue
+# -----------------------------------------
+resource "azurerm_private_dns_zone" "storage_queue" {
+  name                = "privatelink.queue.core.windows.net"
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = module.tags.keyvalues
+}
+
+# -----------------------------------------
+# Link Storage Queue DNS Zone to VNET
+# -----------------------------------------
+resource "azurerm_private_dns_zone_virtual_network_link" "storage_queue_vnet_link" {
+  name                  = "pdz-storage-queue-vnet-link-${var.subscription}-01"
+  resource_group_name   = azurerm_resource_group.rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.storage_queue.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+  registration_enabled  = false
+  tags                  = module.tags.keyvalues
+}
+
+# ----------------------------------------------------------------------------------------------------------------------

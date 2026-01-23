@@ -74,3 +74,8 @@ data "azurerm_private_dns_zone" "table" {
   name                = "privatelink.table.core.windows.net"
   resource_group_name = "rg-aid-${var.subscription}-01"
 }
+
+data "azurerm_private_dns_zone" "queue" {
+  name                = "privatelink.queue.core.windows.net"
+  resource_group_name = "rg-aid-${var.subscription}-01"
+}

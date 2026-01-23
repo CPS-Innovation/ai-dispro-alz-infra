@@ -64,3 +64,29 @@ resource "azurerm_private_endpoint" "aidds_sa_table_pe" {
 
   depends_on = [azurerm_storage_account.aidds_sa]
 }
+
+resource "azurerm_private_endpoint" "aidds_sa_queue_pe" {
+  name                = "pe-sa-queue-aidds-${var.environment}-01"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  subnet_id           = data.azurerm_subnet.nonprod_subnet.id
+  tags                = module.tags.keyvalues
+
+  private_service_connection {
+    name                           = "psc-sa-queue-aidds-${var.environment}-01"
+    private_connection_resource_id = azurerm_storage_account.aidds_sa.id
+    is_manual_connection           = false
+    subresource_names              = ["queue"]
+  }
+
+  private_dns_zone_group {
+    name = "pdz-sa-queue-aidds-${var.environment}-01"
+    private_dns_zone_ids = [
+      data.azurerm_private_dns_zone.queue.id
+    ]
+  }
+
+  custom_network_interface_name = "nic-pe-sa-queue-aidds-${var.environment}-01"
+
+  depends_on = [azurerm_storage_account.aidds_sa]
+}
