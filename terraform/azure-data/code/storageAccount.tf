@@ -7,8 +7,20 @@ resource "azurerm_storage_account" "aidds_sa" {
   tags                     = module.tags.keyvalues
 }
 
-resource "azurerm_storage_container" "corpus" {
-  name                  = "corpus"
+resource "azurerm_storage_container" "source" {
+  name                  = "source"
+  storage_account_id    = azurerm_storage_account.aidds_sa.id
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_container" "processed" {
+  name                  = "processed"
+  storage_account_id    = azurerm_storage_account.aidds_sa.id
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_container" "section" {
+  name                  = "section"
   storage_account_id    = azurerm_storage_account.aidds_sa.id
   container_access_type = "private"
 }
