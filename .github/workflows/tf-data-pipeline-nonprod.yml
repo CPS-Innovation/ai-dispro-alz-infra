@@ -30,16 +30,16 @@ jobs:
           terraform_version: 1.14.0
 
       - name: Terraform Init
-        working-directory: ./terraform/azure-psql/code
+        working-directory: ./terraform/azure-data/code
         run: |
           terraform init \
             -backend-config="resource_group_name=rg-aid-tfstate-nonprod-01" \
             -backend-config="storage_account_name=staidtfstatenonprod01" \
             -backend-config="container_name=tfstate" \
-            -backend-config="key=azure-psql-dev.tfstate"
+            -backend-config="key=azure-data-dev.tfstate"
 
       - name: Terraform Plan
-        working-directory: ./terraform/azure-psql/code
+        working-directory: ./terraform/azure-data/code
         run: |
           terraform plan \
             -var-file=../environments/dev.tfvars \
@@ -53,5 +53,5 @@ jobs:
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.apply_changes == 'true' }}
-        working-directory: ./terraform/azure-psql/code
+        working-directory: ./terraform/azure-data/code
         run: terraform apply -auto-approve tfplan
