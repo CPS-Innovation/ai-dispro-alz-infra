@@ -7,12 +7,6 @@ resource "azurerm_storage_account" "aiddf_sa" {
   tags                     = module.tags.keyvalues
 }
 
-resource "azurerm_storage_container" "corpus" {
-  name                  = "corpus"
-  storage_account_id    = azurerm_storage_account.aiddf_sa.id
-  container_access_type = "private"
-}
-
 resource "azurerm_private_endpoint" "aiddf_sa_blob_pe" {
   name                = "pe-sa-blob-aiddf-${var.environment}-01"
   location            = azurerm_resource_group.rg.location

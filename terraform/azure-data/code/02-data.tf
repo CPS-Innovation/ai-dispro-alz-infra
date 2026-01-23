@@ -13,3 +13,8 @@ data "azurerm_private_dns_zone" "psql" {
   name                = "privatelink.postgres.database.azure.com"
   resource_group_name = "rg-aid-${var.subscription}-01"
 }
+
+data "azurerm_private_dns_zone" "blob" {
+  name                = "privatelink.blob.core.windows.net"
+  resource_group_name = "rg-aid-${var.subscription}-01"
+}
