@@ -79,3 +79,8 @@ data "azurerm_private_dns_zone" "queue" {
   name                = "privatelink.queue.core.windows.net"
   resource_group_name = "rg-aid-${var.subscription}-01"
 }
+
+data "azurerm_private_dns_zone" "ai_services" {
+  name                = "privatelink.cognitiveservices.azure.com"
+  resource_group_name = "rg-aid-${var.subscription}-01"
+}
