@@ -29,7 +29,7 @@ resource "azurerm_private_endpoint" "aidds_sa_blob_pe" {
   name                = "pe-sa-blob-aidds-${var.environment}-01"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  subnet_id           = data.azurerm_subnet.nonprod_subnet.id
+  subnet_id           = data.azurerm_subnet.pe_subnet.id
   tags                = module.tags.keyvalues
 
   private_service_connection {
