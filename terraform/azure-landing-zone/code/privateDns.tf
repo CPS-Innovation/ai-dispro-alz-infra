@@ -147,3 +147,27 @@ resource "azurerm_private_dns_zone_virtual_network_link" "storage_queue_vnet_lin
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------
+# Private DNS Zone for AI Services
+# -----------------------------------------
+resource "azurerm_private_dns_zone" "cognitiveservices" {
+  name                = "privatelink.cognitiveservices.azure.com"
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = module.tags.keyvalues
+}
+
+# -----------------------------------------
+# Link AI Services DNS Zone to VNET
+# -----------------------------------------
+resource "azurerm_private_dns_zone_virtual_network_link" "cognitiveservices_vnet_link" {
+  name                  = "pdz-cognitiveservices-vnet-link-${var.subscription}-01"
+  resource_group_name   = azurerm_resource_group.rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.cognitiveservices.name
+  virtual_network_id    = azurerm_virtual_network.vnet.id
+  registration_enabled  = false
+  tags                  = module.tags.keyvalues
+}
+
+# ----------------------------------------------------------------------------------------------------------------------
