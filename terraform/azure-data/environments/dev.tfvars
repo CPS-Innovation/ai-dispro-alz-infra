@@ -1,4 +1,4 @@
 environment  = "dev"
 subscription = "nonprod"
-sku          = "GP_Standard_D2s_v3"
+sku          = "Standard_B1ms"
 static_ip    = "10.7.194.20"
